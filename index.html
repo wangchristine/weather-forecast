@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test map</title>
+</head>
+
+<body>
+    <!-- https://mapshaper.org/ -->
+    <!-- 啟動專案: http-server . -->
+    <!-- 整個專案做完記得跑 npm uninstall http-server -->
+    <!-- data: https://data.gov.tw/dataset/7442 -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/d3/d3.min.js"></script>
+    <script type="text/javascript">
+    d3.json("country.json", function(error, geo) {
+        if (error) {
+            return console.error(error);
+        }
+        console.log('success');
+        console.log(geo.features);
+
+        var width = 500;
+        var height = 500;
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        var projection = d3.geo.mercator().center([121, 24]).scale(6000).translate([width / 2,
+            height / 2.5
+        ]);
+
+        var geoGenerator = d3.geo.path()
+            .projection(projection);
+
+        d3.select("svg").selectAll("path").data(geo.features)
+            .enter().append("path").attr("d", geoGenerator);
+    });
+    </script>
+</body>
+
+</html>
