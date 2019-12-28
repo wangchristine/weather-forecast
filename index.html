@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>test map</title>
+    <style type="text/css">
+        .color-scale div {
+            width: 20px;
+            height: 30px;
+            float: left;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,6 +24,7 @@
         天氣api (update every 5 seconds)
         <br>
         => 台灣各縣市目前降雨量百分比分配圖(0 ~ 100%)
+        <div class="color-scale"></div>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/d3/d3.min.js"></script>
@@ -32,6 +40,8 @@
             console.log(geo.features);
 
             var geoGenerator = initMap();
+
+            initScale();
 
             renderMap(geo, geoGenerator);
 

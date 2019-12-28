@@ -1,3 +1,5 @@
+var color = d3.scale.linear().domain([0, 100]).range(["#d6e7f0", "#005dc5"]);
+
 function renderMap(geo, geoGenerator) {
 
     // 暫時將 api 替換成自行測試用的資料
@@ -9,20 +11,19 @@ function renderMap(geo, geoGenerator) {
         .then(data => {
             var dataWithWeather = formatData(geo, data);
             // console.log(dataWithWeather);
-            var color = d3.scale.linear().domain([0,100]).range(["#d6e7f0","#005dc5"]);
 
-            var temp =  d3.select("svg").selectAll("path").data(dataWithWeather);
-            temp.enter().append("path");
-            
-                d3.select("svg").selectAll("path")
+            var selectMap = d3.select(".map").selectAll("path").data(dataWithWeather);
+            selectMap.enter().append("path");
+
+            d3.select(".map").selectAll("path")
                 .attr('stroke', '#005dc5').attr('stroke-width', '0.5').attr({
                     d: geoGenerator,
-                    fill: function(d){
+                    fill: function(d) {
                         return color(d.properties.weather);
                     }
                 });
 
-            // temp.exit().remove();
+            // selectMap.exit().remove();
 
         })
         .catch(err => {
@@ -40,6 +41,7 @@ function initMap() {
         .append("svg")
         .attr("width", width)
         .attr("height", height)
+        .attr("class", "map")
         // .style("display", "block")
         // .style("margin", "auto");
 
@@ -53,10 +55,33 @@ function initMap() {
     return geoGenerator;
 }
 
+function initScale() {
+    var width = 200;
+    var height = 40;
+    var div = d3.select(".color-scale")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    var rects = div.selectAll('.rects').data(d3.range(100))
+        .enter().append("rect")
+        .attr("class", "rects")
+        .attr("x", function(d, i) {
+            return i * 2;
+        })
+        .attr("y", 0)
+        .attr("height", height)
+        .attr("width", 2)
+        .style("fill", function(d) {
+            return color(d);
+        });
+
+}
+
 function formatData(geo, weather) {
     console.log(geo.features);
 
-    geo.features.forEach(function(city){
+    geo.features.forEach(function(city) {
         // console.log(city.properties.COUNTYNAME);
         weather.records.location.forEach(function(element) {
             // console.log(element);
