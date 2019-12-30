@@ -21,6 +21,16 @@ function renderMap(geo, geoGenerator) {
                     fill: function(d) {
                         return color(d.properties.weather);
                     }
+                }).on("mouseover", function(d) {
+                    console.log(d.properties.COUNTYNAME);
+                    d3.select(this).transition()
+                        .duration('50')
+                        .attr('opacity', '.65');
+                    updateDetail(d);
+                }).on('mouseout', function (d, i) {
+                    d3.select(this).transition()
+                        .duration('50')
+                        .attr('opacity', '1');
                 });
 
             // selectMap.exit().remove();
@@ -36,16 +46,18 @@ function renderMap(geo, geoGenerator) {
 
 function initMap() {
     var width = 800;
-    var height = 800;
-    var svg = d3.select("body")
+    var height = 750;
+    var svg = d3.select(".map-detail")
         .append("svg")
-        .attr("width", width)
+        .attr("width", "90%")
         .attr("height", height)
         .attr("class", "map")
-        // .style("display", "block")
-        // .style("margin", "auto");
+        .attr("viewBox", "0 0 800 750")
+        .attr("preserveAspectRatio", "xMidYMid slice")
+        .style("display", "block")
+        .style("margin", "auto");
 
-    var projection = d3.geo.mercator().center([121, 24]).scale(6500).translate([width / 2,
+    var projection = d3.geo.mercator().center([121.2, 24.7]).scale(6000).translate([width / 2,
         height / 2.5
     ]);
 
@@ -61,7 +73,9 @@ function initScale() {
     var div = d3.select(".color-scale")
         .append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .style("display", "block")
+        .style("margin", "auto");
 
     var rects = div.selectAll('.rects').data(d3.range(100))
         .enter().append("rect")
@@ -76,6 +90,11 @@ function initScale() {
             return color(d);
         });
 
+}
+
+function updateDetail(d) {
+    $('.city-detail .city').text(d.properties.COUNTYNAME);
+    $('.city-detail .percent').text(d.properties.weather);
 }
 
 function formatData(geo, weather) {
