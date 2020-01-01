@@ -19,7 +19,7 @@ function renderMap(geo, geoGenerator) {
                 .attr('stroke', '#005dc5').attr('stroke-width', '0.5').attr({
                     d: geoGenerator,
                     fill: function(d) {
-                        return color(d.properties.weather);
+                        return color(d.properties.weather[1].time[0].parameter.parameterName);
                     }
                 }).on("mouseover", function(d) {
                     console.log(d.properties.COUNTYNAME);
@@ -94,7 +94,15 @@ function initScale() {
 
 function updateDetail(d) {
     $('.city-detail .city').text(d.properties.COUNTYNAME);
-    $('.city-detail .percent').text(d.properties.weather);
+    $('.city-detail .percent').text(d.properties.weather[1].time[0].parameter.parameterName + "%");
+    $('.city-detail .temperture').text(
+        d.properties.weather[2].time[0].parameter.parameterName
+        + "°" + d.properties.weather[2].time[0].parameter.parameterUnit
+        + " - "
+        + d.properties.weather[4].time[0].parameter.parameterName
+        + "°" + d.properties.weather[4].time[0].parameter.parameterUnit
+    );
+    $('.city-detail .description').text(d.properties.weather[0].time[0].parameter.parameterName);
 }
 
 function formatData(geo, weather) {
@@ -103,10 +111,8 @@ function formatData(geo, weather) {
     geo.features.forEach(function(city) {
         // console.log(city.properties.COUNTYNAME);
         weather.records.location.forEach(function(element) {
-            // console.log(element);
             if (element.locationName === city.properties.COUNTYNAME) {
-                // console.log(element.weatherElement[1].time[0].parameter.parameterName);
-                city.properties.weather = element.weatherElement[1].time[0].parameter.parameterName;
+                city.properties.weather = element.weatherElement;
             }
         });
     });
