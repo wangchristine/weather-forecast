@@ -94,15 +94,64 @@ function initScale() {
 
 function updateDetail(d) {
     $('.city-detail .city').text(d.properties.COUNTYNAME);
-    $('.city-detail .percent').text(d.properties.weather[1].time[0].parameter.parameterName + "%");
-    $('.city-detail .temperture').text(
-        d.properties.weather[2].time[0].parameter.parameterName
-        + "°" + d.properties.weather[2].time[0].parameter.parameterUnit
-        + " - "
-        + d.properties.weather[4].time[0].parameter.parameterName
-        + "°" + d.properties.weather[4].time[0].parameter.parameterUnit
-    );
-    $('.city-detail .description').text(d.properties.weather[0].time[0].parameter.parameterName);
+    $('.weather-detail').children().remove();
+
+    var now = new Date();
+
+    for (var i = 0; i < 3; i++) {
+        var startTime = new Date(d.properties.weather[0].time[i].startTime);
+        var endTime = new Date(d.properties.weather[0].time[i].endTime);
+        var dateDesc = "";
+
+        if(now.getDate() == startTime.getDate()){
+            dateDesc += "今天";
+        }else{
+            dateDesc += "明天";
+        }
+        switch(startTime.getHours()){
+            case 0:
+                dateDesc = "午夜";
+            break;
+            case 6:
+                dateDesc += "白天";
+            break;
+            case 12:
+                dateDesc += "中午";
+            break;
+            case 18:
+                dateDesc += "晚上";
+            break;
+        }
+
+        $('.weather-detail').append("<div class=\"col-12 weather-section-detail\">" +
+            "<div class=\"weather-img float-right\">" +
+            "<img src=\"img/" + (startTime.getHours() == 6 ? "day" : "night") + "/" + numToString(d.properties.weather[0].time[i].parameter.parameterValue) + ".svg\">" +
+            "<div class=\"description\">" +
+                d.properties.weather[0].time[i].parameter.parameterName +
+            "</div>" +
+            "</div>" +
+            "<div class=\"datetime\">" +
+                dateDesc +
+                "<span>" +
+                "(" + d.properties.weather[0].time[i].startTime.slice(-8, -3) + " ~ " + d.properties.weather[0].time[i].endTime.slice(-8, -3) + ")" +
+                "</span>" +
+            "</div>" +
+            "降雨機率:" +
+            "<div class=\"percent\">" +
+                d.properties.weather[1].time[i].parameter.parameterName + "%" +
+            "</div>" +
+             "溫度:" +
+            "<div class=\"temperture\">" +
+                d.properties.weather[2].time[i].parameter.parameterName +
+                "°" + d.properties.weather[2].time[i].parameter.parameterUnit +
+                " - " +
+                d.properties.weather[4].time[i].parameter.parameterName +
+                "°" + d.properties.weather[4].time[i].parameter.parameterUnit +
+            "</div>" +
+             "</div>"
+        );
+    }
+    
 }
 
 function formatData(geo, weather) {
@@ -118,4 +167,8 @@ function formatData(geo, weather) {
     });
 
     return geo.features;
+}
+
+function numToString(num) {
+    return num < 10 ? "0" + num.toString() : num.toString();
 }
