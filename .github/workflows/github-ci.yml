@@ -37,4 +37,4 @@ jobs:
           sed -i "s/API_TOKEN/$API_TOKEN/g" ./index.js
 
       - name: Deploy
-          run: npm install
+        run: npm install
