@@ -1,10 +1,9 @@
 var color = d3.scale.linear().domain([0, 100]).range(["#d6e7f0", "#005dc5"]);
 
 function renderMap(geo, geoGenerator) {
-
     // 暫時將 api 替換成自行測試用的資料
-    // fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=rdec-key-123-45678-011121314")
-    fetch("temp.json")
+    fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=API_TOKEN")
+    // fetch("temp.json")
         .then(res => {
             return res.json();
         })
