@@ -24,6 +24,11 @@ jobs:
       - name: Clone source
         uses: actions/checkout@v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
       # Runs a single command using the runners shell
       - name: Set Env
         env:
