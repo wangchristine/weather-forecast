@@ -8,6 +8,7 @@ body {
 
 #app {
     position: relative;
+    margin: 0;
 }
 
 .row {
@@ -27,7 +28,8 @@ body {
 }
 
 svg.map {
-    box-shadow: 1px 1px 10px 1px #888888;
+    background-color: rgba(33, 91, 163, 0.5);
+    border-radius: 10px;
 }
 
 .city-detail {
@@ -38,22 +40,41 @@ svg.map {
     margin: 20px auto;
     background-color: #40566b;
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
 }
 
 .weather-section-city .city {
     font-size: 1.8rem;
 }
 
+.weather-detail {
+    width: 100%;
+}
+
 .weather-section-detail {
     margin: 20px auto;
     background-color: #1a67b1;
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
+}
+
+.weather-section-detail .datetime {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.weather-section-detail .datetime span {
+    margin-left: 5px;
+    font-size: 1.2rem;
+    color: #c8c8c8;
+}
+
+.weather-img {
+    text-align: center;
 }
 
 .cloud1 {
-    background: url('img/cloud1.png') no-repeat center top;
+    background: url('img/cloud/cloud1.png') no-repeat center top;
     background-size: cover;
     bottom: 0px;
     opacity: .15;
@@ -67,7 +88,7 @@ svg.map {
 }
 
 .cloud2 {
-    background: url('img/cloud2.png') no-repeat center top;
+    background: url('img/cloud/cloud2.png') no-repeat center top;
     background-size: cover;
     bottom: -165px;
     opacity: .4;
