@@ -146,7 +146,7 @@ function updateDetail(d) {
 
         $('.weather-detail').append("<div class=\"col-12 weather-section-detail\">" +
             "<div class=\"weather-img float-right\">" +
-            "<img src=\"img/" + (startTime.getHours() == 6 ? "day" : "night") + "/" + numToString(d.properties.weather[0].time[i].parameter.parameterValue) + ".svg\">" +
+            "<img src=\"WEATHER_ICON_PATH/" + (startTime.getHours() == 6 ? "day" : "night") + "/" + numToString(d.properties.weather[0].time[i].parameter.parameterValue) + ".svg\">" +
             "<div class=\"description\">" +
                 d.properties.weather[0].time[i].parameter.parameterName +
             "</div>" +
