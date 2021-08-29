@@ -24,7 +24,7 @@ $(function() {
 
 function renderMap(geo, geoGenerator) {
     // 暫時將 api 替換成自行測試用的資料
-    fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=ACCESS_TOKEN")
+    fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=API_TOKEN")
     // fetch("temp.json")
         .then(res => {
             return res.json();
