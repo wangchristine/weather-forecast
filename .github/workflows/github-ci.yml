@@ -35,10 +35,8 @@ jobs:
       - name: Set Env
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
-          WEATHER_ICON_PATH: ${{ secrets.WEATHER_ICON_PATH }}
         run: |
           sed -i "s/API_TOKEN/$API_TOKEN/g" ./src/app.js
-          sed -i "s/WEATHER_ICON_PATH/$WEATHER_ICON_PATH/g" ./src/app.js
 
       - name: Deploy
         run: |
