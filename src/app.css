@@ -74,7 +74,7 @@ svg.map {
 }
 
 .cloud1 {
-    background: url('img/cloud/cloud1.png') no-repeat center top;
+    background: url('../img/cloud/cloud1.png') no-repeat center top;
     background-size: cover;
     bottom: 0px;
     opacity: .15;
@@ -88,7 +88,7 @@ svg.map {
 }
 
 .cloud2 {
-    background: url('img/cloud/cloud2.png') no-repeat center top;
+    background: url('../img/cloud/cloud2.png') no-repeat center top;
     background-size: cover;
     bottom: -165px;
     opacity: .4;

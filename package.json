@@ -8,9 +8,16 @@
     "d3": "^3.5.17",
     "jquery": "^3.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode=development",
+    "build": "webpack --mode=production"
   },
   "author": "",
   "license": "ISC"
