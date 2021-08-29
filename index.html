@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>test map</title>
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>weather forecast</title>
 </head>
 
 <body>
@@ -70,34 +68,7 @@
             </div>
         </div>
     </div>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/d3/d3.min.js"></script>
-    <script src="variable.js"></script>
-    <script src="index.js"></script>
-    <script type="text/javascript">
-    $(function() {
-
-        d3.json("country.json", function(error, geo) {
-            if (error) {
-                return console.error(error);
-            }
-            console.log('success');
-            console.log(geo.features);
-
-            var geoGenerator = initMap();
-
-            initScale();
-
-            renderMap(geo, geoGenerator);
-
-            setInterval(function() {
-                renderMap(geo, geoGenerator);
-            }, 5000);
-
-        });
-
-    });
-    </script>
+    <script src="dist/index.bundle.js"></script>
 </body>
 
 </html>
