@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Weather forcast CI
+name: test CI
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   push:
-    branches: [ master ]
+    branches: [ develop ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,6 +23,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Clone source
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -39,4 +41,9 @@ jobs:
       - name: Deploy
         run: |
           npm install
-          npm run dev
+          npm run build
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "update dist"
+          git push
