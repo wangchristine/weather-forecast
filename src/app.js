@@ -1,5 +1,27 @@
 var color = d3.scale.linear().domain([0, 100]).range(["#d6e7f0", "#005dc5"]);
 
+$(function() {
+    d3.json("country.json", function(error, geo) {
+        if (error) {
+            return console.error(error);
+        }
+        console.log('success');
+        console.log(geo.features);
+
+        var geoGenerator = initMap();
+
+        initScale();
+
+        renderMap(geo, geoGenerator);
+
+        setInterval(function() {
+            renderMap(geo, geoGenerator);
+        }, 5000);
+
+    });
+
+});
+
 function renderMap(geo, geoGenerator) {
     // 暫時將 api 替換成自行測試用的資料
     fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=API_TOKEN")
