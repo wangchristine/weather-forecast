@@ -47,3 +47,4 @@ jobs:
           git add dist/.
           git commit -m "update dist"
           git push
+        continue-on-error: true
