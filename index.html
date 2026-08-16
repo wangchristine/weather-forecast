@@ -1,74 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>weather forecast</title>
-</head>
-
-<body>
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="台灣各縣市即時天氣預報" />
+    <title>台灣天氣地圖</title>
+  </head>
+  <body>
     <!-- https://mapshaper.org/ -->
     <!-- 啟動專案: http-server . -->
     <!-- 整個專案做完記得跑 npm uninstall http-server -->
     <!-- data: https://data.gov.tw/dataset/7442 -->
     <!-- data: https://opendata.cwb.gov.tw/devManual/insrtuction -->
     <!-- readme pdf: https://opendata.cwb.gov.tw/opendatadoc/CWB_Opendata_API_V1.2.pdf -->
-    <div class="row" id="app">
-        <span class="cloud1"></span>
-        <span class="cloud2"></span>
-        <div class="col-10 offset-1">
-            <div class="title">
-                天氣api (update every 5 seconds)
-                <br>
-                => 台灣各縣市目前降雨量百分比分配圖(0 ~ 100%)
-            </div>
-            <div class="row">
-                <div class="col-xl-8">
-                    <div class="map-detail">
-                        <div class="color-detail">
-                            雨量色階
-                            <div class="color-scale"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="city-detail row">
-                        <div class="col-12 weather-section-city">
-                            目前所在:
-                            <div class="city"></div>
-                        </div>
-                        <div class="weather-detail">
-                            <div class="col-12 weather-section-detail">
-                                降雨機率:
-                                <div class="percent"></div>
-                                溫度:
-                                <div class="temperture"></div>
-                                描述:
-                                <div class="description"></div>
-                            </div>
-                            <div class="col-12 weather-section-detail">
-                                降雨機率:
-                                <div class="percent"></div>
-                                溫度:
-                                <div class="temperture"></div>
-                                描述:
-                                <div class="description"></div>
-                            </div>
-                            <div class="col-12 weather-section-detail">
-                                降雨機率:
-                                <div class="percent"></div>
-                                溫度:
-                                <div class="temperture"></div>
-                                描述:
-                                <div class="description"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="dist/index.bundle.js"></script>
-</body>
-
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
