@@ -173,19 +173,45 @@ function formatDateTime(value) {
 function formatPeriod(period) {
   if (!period) return "預報時段";
   const start = new Date(period.startTime);
-  const day = start.toLocaleDateString("zh-TW", {
-    month: "short",
-    day: "numeric",
-  });
-  const part =
-    start.getHours() === 6
-      ? "白天"
-      : start.getHours() === 18
-        ? "夜間"
-        : start.getHours() === 0
-          ? "今日"
-          : "時段";
-  return `${day} · ${part}`;
+  const today = new Date();
+  const startDate = new Date(
+    start.getFullYear(),
+    start.getMonth(),
+    start.getDate(),
+  );
+  const todayDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+  );
+  const dayDifference = Math.round(
+    (startDate - todayDate) / (1000 * 60 * 60 * 24),
+  );
+
+  let dateDescription = dayDifference === 0 ? "今日" : "明日";
+  let timeDescription = "時段";
+
+  switch (start.getHours()) {
+    case 0:
+      timeDescription = "凌晨";
+      break;
+    case 6:
+      timeDescription = "白天";
+      break;
+    case 12:
+      timeDescription = "下午";
+      break;
+    case 18:
+      if (dayDifference === 0) {
+        dateDescription = "今晚";
+        timeDescription = "明晨";
+      } else {
+        timeDescription = "晚上";
+      }
+      break;
+  }
+
+  return `${dateDescription}${timeDescription}`;
 }
 
 async function loadWeather() {
