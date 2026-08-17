@@ -27,6 +27,8 @@ const isLoading = ref(false);
 const errorMessage = ref("");
 const lastUpdated = ref(new Date());
 const hoveredCity = ref(null);
+const currentHour = new Date().getHours();
+const isNight = currentHour < 6 || currentHour >= 18;
 
 const offshoreCountyNames = new Set([
   "Penghu County",
@@ -250,7 +252,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="app-shell">
+  <main :class="['app-shell', { day: !isNight, night: isNight }]">
     <div class="cloud-layer" aria-hidden="true">
       <img class="cloud cloud-back" :src="cloud1" alt="" />
       <img class="cloud cloud-middle" :src="cloud2" alt="" />

@@ -3,7 +3,7 @@
 :root {
   font-family: "Noto Sans TC", system-ui, sans-serif;
   color: #eef6ff;
-  background: #0a2341;
+  background: #3c8fd1;
   font-synthesis: none;
 }
 * {
@@ -14,9 +14,17 @@ body {
   min-width: 320px;
   background: radial-gradient(
     circle at 75% 10%,
-    #1b4d7e 0,
-    #0a2341 43%,
-    #07172d 100%
+    #78c4ed 0,
+    #3c8fd1 43%,
+    #2b72b3 100%
+  );
+}
+body:has(.app-shell.night) {
+  background: radial-gradient(
+    circle at 75% 10%,
+    #153c6d 0,
+    #071a33 43%,
+    #050e20 100%
   );
 }
 .app-shell {
@@ -86,6 +94,12 @@ body {
   font-weight: 800;
   letter-spacing: 0.16em;
 }
+.hero .eyebrow {
+  color: #e7f6ff;
+}
+.hero h1 {
+  color: #ffffff;
+}
 h1,
 h2,
 p {
@@ -98,7 +112,7 @@ h1 {
   letter-spacing: -0.06em;
 }
 h1 span {
-  color: #69cdfd;
+  color: #083e68;
 }
 h2 {
   margin-bottom: 0;
@@ -114,6 +128,7 @@ h2 {
 }
 .intro {
   margin-bottom: 0;
+  color: #c9eafa;
   font-size: 0.95rem;
 }
 .status-pill {
@@ -124,6 +139,11 @@ h2 {
   background: #102b4c99;
   font-size: 0.875rem;
   white-space: nowrap;
+}
+.app-shell.day .status-pill {
+  border-color: #b9def2;
+  color: #f4fbff;
+  background: #174a70b8;
 }
 .status-dot {
   display: inline-block;
@@ -154,6 +174,9 @@ h2 {
 .city-card,
 .forecast-card {
   padding: 26px;
+}
+.map-card {
+  background: linear-gradient(145deg, #174b72ed, #123b5de8);
 }
 .map-wrap {
   position: relative;
@@ -271,7 +294,41 @@ h2 {
   gap: 22px;
 }
 .city-card {
-  background: linear-gradient(145deg, #2b6177, #1b4058);
+  background: linear-gradient(145deg, #2f738a, #1f526d);
+}
+.forecast-card {
+  background: linear-gradient(145deg, #234d76ed, #153957e8);
+}
+.app-shell.night .map-card,
+.app-shell.night .forecast-card {
+  background: linear-gradient(145deg, #112b4bdb, #0b1d36df);
+}
+.app-shell.night .city-card {
+  background: linear-gradient(145deg, #17658b, #12385f);
+}
+.app-shell.night .map {
+  background: radial-gradient(
+    ellipse at center,
+    rgb(35 103 148 / 0.36) 0%,
+    rgb(23 67 105 / 0.24) 34%,
+    rgb(11 38 69 / 0.12) 62%,
+    transparent 84%
+  );
+}
+.app-shell.night .offshore-inset {
+  background: #09213de8;
+}
+.app-shell.night .offshore-block {
+  background: #0d2a49aa;
+}
+.app-shell.night h1 span {
+  color: #69cdfd;
+}
+.app-shell.night .hero .eyebrow {
+  color: #68c4ff;
+}
+.app-shell.night .intro {
+  color: #91abc7;
 }
 .city-card h2 {
   font-size: 2.2rem;
