@@ -36,6 +36,9 @@ jobs:
       - name: Build
         run: |
           npm run build
+        env:
+          VITE_WEATHER_API_URL: ${{ secrets.VITE_WEATHER_API_URL }}
+          VITE_WEATHER_API_TOKEN: ${{ secrets.VITE_WEATHER_API_TOKEN }}
 
       - name: Set SPA route
         run: |
